@@ -1,1 +1,1 @@
-# quickread-nyt
+# quickreader
