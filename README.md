@@ -1,9 +1,9 @@
 # QUICKREADER
 
-> When the headline just isn't enough...
+> When the headlines just aren't enough...
 
 ## APIs
 
-New York Times: https://api.nytimes.com/svc/topstories/v2/home.json?api-key=yourkey
+New York Times: https://api.nytimes.com/
 
 ChatGPT: https://platform.openai.com/
