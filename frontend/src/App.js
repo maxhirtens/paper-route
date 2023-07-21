@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import RoutesList from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
-import Loading from "./helpers/loading";
 import { decodeToken } from "react-jwt";
+import { Spinner } from "reactstrap";
 import NavBar from "./navbar/NavBar";
 import "./App.css";
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap Bundle JS
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   if (isLoading) {
-    return <Loading />;
+    return <Spinner />;
   }
 
   return (

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function Home() {
   //   const { currentUser } = useContext(UserContext);
-  console.log("test" + process.env.REACT_APP_BASE_URL);
 
   //   if (currentUser && currentUser.username !== "testuser") {
   //     return (
@@ -17,9 +16,14 @@ function Home() {
   return (
     <div className="container text-center">
       <h3>Welcome to Quickreader!</h3>
+      <div>
+        <h4>Display NYT Data</h4>
+        <p></p>
+      </div>
+
       <h6>
         <Link to="/signup">Signup</Link> or <Link to="/login">Login</Link> to
-        continue.
+        save your QuickReads.
       </h6>
     </div>
   );

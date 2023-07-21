@@ -1,6 +1,6 @@
 "use strict";
 
-/** News frontpage route. */
+/** Get articles route. */
 
 const express = require("express");
 const { BadRequestError } = require("../expressError");

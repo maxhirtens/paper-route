@@ -9,7 +9,7 @@ const { authenticateJWT } = require("./middleware/auth");
 
 // const authRoutes = require("./routes/auth");
 const summarizeRoutes = require("./routes/summarize");
-const frontpageRoutes = require("./routes/frontpage");
+const articlesRoutes = require("./routes/articles");
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use(authenticateJWT);
 
 // app.use("/auth", authRoutes);
 app.use("/summarize", summarizeRoutes);
-app.use("/frontpage", frontpageRoutes);
+app.use("/articles", articlesRoutes);
 
 /** Handle 404 errors -- this matches everything */
 // app.use(function (req, res, next) {
