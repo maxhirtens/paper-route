@@ -29,25 +29,33 @@ class QuickreaderApi {
 
   // Get login token.
   static async login(data) {
-    let res = await this.request(`auth/token`, data, "post");
+    let res = await this.request(`auth/token`, "post", data);
     return res.token;
   }
 
   // sign up.
   static async signup(data) {
-    let res = await this.request(`auth/register`, data, "post");
+    let res = await this.request(`auth/register`, "post", data);
     return res.token;
   }
 
   // update user profile.
   static async saveProfile(username, data) {
-    let res = await this.request(`users/${username}`, data, "patch");
+    let res = await this.request(`users/${username}`, "patch", data);
     return res.user;
   }
 
+  // get articles from NYT.
   static async getArticles() {
     let res = await this.request("articles");
-    console.log("attempting to retrieve articles");
+    console.log(`attempting to retrieve articles`);
+    return res.data;
+  }
+
+  // get articles from NYT.
+  static async summarize(data) {
+    let res = await this.request("summarize", "post", data);
+    console.log(`attempting to summarize`);
     return res.data;
   }
 }

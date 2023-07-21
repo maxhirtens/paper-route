@@ -19,6 +19,7 @@ const openai = new OpenAIApi(configuration);
 // POST request to ChatGPT.
 router.post("/", async (req, res, next) => {
   // getting prompt question from request
+
   const prompt = req.body.prompt;
 
   try {
@@ -27,14 +28,27 @@ router.post("/", async (req, res, next) => {
     }
 
     // get a response from chatgpt.
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt,
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content:
+            "Summarize today's top New York Times news content you are given using lots of emojis.",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      temperature: 0,
+      max_tokens: 1024,
     });
-    console.log(response.data);
 
     // retrieve the answer text.
-    const completion = response.data.choices[0].text;
+    const completion = response.data.choices[0].message.content;
+
+    console.log(completion);
 
     // return the result
     return res.status(200).json({
@@ -42,7 +56,7 @@ router.post("/", async (req, res, next) => {
       message: completion,
     });
   } catch (error) {
-    return next(err);
+    return next(error);
   }
 });
 

@@ -12,6 +12,7 @@ const axios = require("axios");
 // GET request to news source.
 router.get("/", async (req, res, next) => {
   try {
+    console.log(req.body);
     let frontPage = await axios.get(`${BASE_URL}${NYT_API_KEY}`);
     // console.log(frontPage.data);
     // return the result

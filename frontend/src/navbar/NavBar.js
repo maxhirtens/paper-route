@@ -1,30 +1,11 @@
-import React, { useContext } from "react";
-// import "./NavBar.css";
-import { Link, NavLink } from "react-router-dom";
-// import UserContext from "../auth/UserContext";
+import React from "react";
+import { Navbar, NavbarBrand } from "reactstrap";
 
-const NavBar = ({ logout }) => {
-  //   const { currentUser } = useContext(UserContext);
-
+const NavBar = () => {
   return (
-    <div>
-      <nav className="navbar navbar-brand">
-        <Link className="navbar-brand" to="/">
-          Quickreader
-        </Link>
-        <Link className="navbar" to="/nyt">
-          New York Times
-        </Link>
-        <ul className="navbar-nav ml-auto">
-          <li>
-            <NavLink to="/signup">Sign Up</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <Navbar className="my-2" color="secondary" dark>
+      <NavbarBrand href="/">Quickreader</NavbarBrand>
+    </Navbar>
   );
 };
 

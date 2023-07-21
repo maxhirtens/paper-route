@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import RoutesList from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
-import { decodeToken } from "react-jwt";
-import { Spinner } from "reactstrap";
 import NavBar from "./navbar/NavBar";
 import "./App.css";
 // Bootstrap CSS
@@ -11,12 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   return (
     <BrowserRouter>
       <div className="App">
