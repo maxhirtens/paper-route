@@ -1,27 +1,12 @@
 import React, { useState, useEffect } from "react";
 import QuickreaderApi from "../api";
-import {
-  Spinner,
-  Button,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import SummaryBox from "../components/SummaryBox";
+import { Spinner, Button } from "reactstrap";
 
 const Home = () => {
   const [articles, setArticles] = useState(null);
   const [summary, setSummary] = useState(null);
   const [isLoading, setisLoading] = useState(null);
-  const [modal, setModal] = useState(false);
-  const [switchState, setSwitchState] = useState(false);
-
-  // open or close message modal.
-  const toggle = () => setModal(!modal);
 
   // search articles from API.
   async function searchArticles(type) {
@@ -42,26 +27,19 @@ const Home = () => {
     searchArticles();
   }, []);
 
+  // helper to reset page.
+  const resetPage = () => {
+    console.log("cleaning up page");
+    setSummary(null);
+  };
+
   // loading spinner.
   if (!articles || isLoading) return <Spinner />;
 
-  if (summary)
-    return (
-      <div>
-        <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>Today's NYT Quickread</ModalHeader>
-          <ModalBody>{summary.message}</ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={toggle}>
-              Save to Profile
-            </Button>{" "}
-            <Button color="secondary" onClick={toggle}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
-      </div>
-    );
+  if (summary) {
+    console.log("sending summary to summary box");
+    return <SummaryBox summary={summary} resetPage={resetPage} />;
+  }
 
   // parse out content from articles.
   let selects = articles.message.results;
@@ -74,30 +52,13 @@ const Home = () => {
 
   return (
     <div className="container text-center">
-      <div className="container text-center">
-        <h3>Welcome to Quickreader!</h3>
-        <h5>AI-Assisted Summaries for The New York Times</h5>
-        <br></br>
-        <Form>
-          <FormGroup switch>
-            <Input
-              type="switch"
-              checked={switchState}
-              onClick={() => {
-                setSwitchState(!switchState);
-              }}
-            />
-            <Label check>Use emojis</Label>
-          </FormGroup>
-        </Form>
-        {/* <p>Choose a news section:</p> */}
-      </div>
-
+      <h3>Welcome to Quickreader!</h3>
+      <h5>AI-Assisted Summaries for The New York Times</h5>
+      <br></br>
       <Button
         color="success"
         onClick={() => {
           summarize(data);
-          toggle();
           setisLoading(true);
         }}
       >
