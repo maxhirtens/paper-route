@@ -17,8 +17,7 @@ const SummaryBox = ({ summary, resetPage }) => {
       >
         <CardTitle tag="h5">Today's NYT Quickread</CardTitle>
         <CardText>{summary.message}</CardText>
-        <Button color="primary">Save to Profile</Button>
-        <Button color="secondary" onClick={handleReset}>
+        <Button color="danger" onClick={handleReset}>
           Try Again
         </Button>
       </Card>

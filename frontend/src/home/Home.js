@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import QuickreaderApi from "../api";
 import SummaryBox from "../components/SummaryBox";
 import { Spinner, Button } from "reactstrap";
+import ChoicesForm from "../components/ChoicesForm";
 
 const Home = () => {
   const [articles, setArticles] = useState(null);
   const [summary, setSummary] = useState(null);
-  const [isLoading, setisLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
 
   // search articles from API.
   async function searchArticles(type) {
@@ -18,7 +19,7 @@ const Home = () => {
   async function summarize(data) {
     let summary = await QuickreaderApi.summarize(data);
     setSummary(summary);
-    setisLoading(false);
+    setIsLoading(false);
   }
 
   // get articles from API on mount.
@@ -52,18 +53,16 @@ const Home = () => {
 
   return (
     <div className="container text-center">
-      <h3>Welcome to Quickreader!</h3>
+      <h3>Welcome to Quickreader</h3>
       <h5>AI-Assisted Summaries for The New York Times</h5>
+      <i>New York Times front page loaded and ready!</i>
       <br></br>
-      <Button
-        color="success"
-        onClick={() => {
-          summarize(data);
-          setisLoading(true);
-        }}
-      >
-        Quickread The News
-      </Button>
+      <br></br>
+      <ChoicesForm
+        summarize={summarize}
+        setIsLoading={setIsLoading}
+        data={data}
+      />
     </div>
   );
 };

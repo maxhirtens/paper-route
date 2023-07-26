@@ -20,7 +20,13 @@ const openai = new OpenAIApi(configuration);
 router.post("/", async (req, res, next) => {
   // getting prompt question from request
 
-  const prompt = req.body.prompt;
+  const { prompt } = req.body[0];
+
+  const { language, tone, emojis } = req.body[1];
+
+  let content = `Summarize today's top New York Times news content you are given ${language}${tone}${emojis}`;
+
+  console.log(content);
 
   try {
     if (prompt == null) {
@@ -33,8 +39,7 @@ router.post("/", async (req, res, next) => {
       messages: [
         {
           role: "system",
-          content:
-            "Summarize today's top New York Times news content you are given using lots of emojis.",
+          content: content,
         },
         {
           role: "user",
@@ -47,8 +52,6 @@ router.post("/", async (req, res, next) => {
 
     // retrieve the answer text.
     const completion = response.data.choices[0].message.content;
-
-    console.log(completion);
 
     // return the result
     return res.status(200).json({
