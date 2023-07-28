@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 import QuickreaderApi from "../api";
 import SummaryBox from "../components/SummaryBox";
-import { Spinner, Button } from "reactstrap";
+import { Spinner } from "reactstrap";
 import ChoicesForm from "../components/ChoicesForm";
 
 const Home = () => {
   const [articles, setArticles] = useState(null);
+  const [section, setSection] = useState("home");
   const [summary, setSummary] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
+  function updateSection(section) {
+    setSection(section);
+  }
+
   // search articles from API.
-  async function searchArticles(type) {
-    let articles = await QuickreaderApi.getArticles(type);
+  async function searchArticles(section) {
+    let articles = await QuickreaderApi.getArticles(section);
     setArticles(articles);
+    console.log(articles.message.results);
   }
 
   // summarize articles with ChatGPT.
@@ -25,13 +31,14 @@ const Home = () => {
   // get articles from API on mount.
   useEffect(() => {
     console.log("useEffect on NYT Page");
-    searchArticles();
-  }, []);
+    searchArticles(section);
+  }, [section]);
 
   // helper to reset page.
   const resetPage = () => {
     console.log("cleaning up page");
     setSummary(null);
+    setSection("home");
   };
 
   // loading spinner.
@@ -47,18 +54,23 @@ const Home = () => {
   let top3 = selects.slice(3, 6);
   let top3Data = top3.map((c) => c.title + ": " + c.abstract);
   let top3joined = top3Data.join(". ");
+  let time = articles.message.last_updated;
   let data = {
     prompt: top3joined,
+    time: time,
   };
 
   return (
     <div className="container text-center">
       <h3>Welcome to Quickreader</h3>
       <h5>AI-Assisted Summaries for The New York Times</h5>
-      <i>New York Times front page loaded and ready!</i>
+      <i>
+        {section.toUpperCase() ?? "NYT"} content loaded and ready for summary...
+      </i>
       <br></br>
       <br></br>
       <ChoicesForm
+        updateSection={updateSection}
         summarize={summarize}
         setIsLoading={setIsLoading}
         data={data}

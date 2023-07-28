@@ -21,33 +21,9 @@ class QuickreaderApi {
 
   // Individual API routes
 
-  // get logged in user.
-  static async getCurrentUser(username) {
-    let res = await this.request(`users/${username}`);
-    return res.user;
-  }
-
-  // Get login token.
-  static async login(data) {
-    let res = await this.request(`auth/token`, "post", data);
-    return res.token;
-  }
-
-  // sign up.
-  static async signup(data) {
-    let res = await this.request(`auth/register`, "post", data);
-    return res.token;
-  }
-
-  // update user profile.
-  static async saveProfile(username, data) {
-    let res = await this.request(`users/${username}`, "patch", data);
-    return res.user;
-  }
-
   // get articles from NYT.
-  static async getArticles() {
-    let res = await this.request("articles");
+  static async getArticles(section) {
+    let res = await this.request(`articles/${section}`);
     console.log(`attempting to retrieve articles`);
     return res.data;
   }

@@ -20,11 +20,11 @@ const openai = new OpenAIApi(configuration);
 router.post("/", async (req, res, next) => {
   // getting prompt question from request
 
-  const { prompt } = req.body[0];
+  const { prompt, time } = req.body[0];
 
-  const { language, tone, emojis } = req.body[1];
+  const { section, language, manner } = req.body[1];
 
-  let content = `Summarize today's top New York Times news content you are given ${language}${tone}${emojis}`;
+  let content = `Summarize today's top New York Times ${section} content you are given ${language}${manner}`;
 
   console.log(content);
 
@@ -57,6 +57,7 @@ router.post("/", async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: completion,
+      time: time,
     });
   } catch (error) {
     return next(error);

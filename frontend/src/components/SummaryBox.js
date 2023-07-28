@@ -6,6 +6,8 @@ const SummaryBox = ({ summary, resetPage }) => {
     resetPage();
   };
 
+  console.log(summary);
+
   return (
     <div className="container text-center">
       <Card
@@ -15,7 +17,9 @@ const SummaryBox = ({ summary, resetPage }) => {
           width: "50rem",
         }}
       >
-        <CardTitle tag="h5">Today's NYT Quickread</CardTitle>
+        <CardTitle tag="h5">
+          Today's NYT Quickread from {summary.time}
+        </CardTitle>
         <CardText>{summary.message}</CardText>
         <Button color="danger" onClick={handleReset}>
           Try Again

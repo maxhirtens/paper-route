@@ -1,73 +1,92 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-const ChoicesForm = ({ summarize, setIsLoading, data }) => {
-  const [radioValues, setRadioValues] = useState({
-    language: "english",
-    tone: "neutral",
-    emojis: "without emojis.",
+const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
+  const [inputValues, setInputValues] = useState({
+    section: "home",
+    language: "",
+    manner: "",
   });
 
   const onChange = (ev) => {
     const { name, value } = ev.target;
-    setRadioValues((data) => ({
+    setInputValues((data) => ({
       ...data,
       [name]: value,
     }));
-    console.log(radioValues);
-  };
-
-  const onClick = (ev) => {
-    //TO-DO SEND/click value
-    console.log("radio values:", radioValues);
+    console.log(inputValues);
+    updateSection(inputValues.section);
   };
 
   return (
     <div>
       <Form>
+        <p>
+          Dear New York Times AI Bot, please summarize the current top news in
+          the (section) section, (language). Oh and make sure to summarize it
+          (manner).
+        </p>
         <FormGroup>
-          <Input type="radio" value={" "} name="language" onChange={onChange} />
-          For an Adult
+          <Label for="section"></Label>
           <Input
-            type="radio"
-            value={"for a second-grader "}
-            name="language"
+            type="select"
+            name="section"
+            id="section"
+            value={inputValues.section}
             onChange={onChange}
-          />
-          For a Second-Grader
+          >
+            <option defaultValue>front page</option>
+            <option>arts</option>
+            <option>business</option>
+            <option>politics</option>
+            <option>technology</option>
+            <option>sports</option>
+            <option>world</option>
+          </Input>
         </FormGroup>
 
         <FormGroup>
-          <Input type="radio" value={" "} name="tone" onChange={onChange} />
-          Neutral
+          <Label for="language"></Label>
           <Input
-            type="radio"
-            value={"in a sarcastic manner "}
-            name="tone"
+            type="select"
+            name="language"
+            id="language"
+            value={inputValues.language}
             onChange={onChange}
-          />
-          Sarcastic
+          >
+            <option defaultValue>in English</option>
+            <option>in Spanish</option>
+            <option>in German</option>
+            <option>in Tagalog</option>
+            <option>in Arabic</option>
+          </Input>
         </FormGroup>
+
         <FormGroup>
-          <Input type="radio" value={"."} name="emojis" onChange={onChange} />
-          No Emojis
+          <Label for="manner"></Label>
           <Input
-            type="radio"
-            value={"with added emojis."}
-            name="emojis"
+            type="select"
+            name="manner"
+            id="manner"
+            value={inputValues.manner}
             onChange={onChange}
-          />
-          Include Emojis 📰 🗞️ 🥸
+          >
+            <option defaultValue>for an adult.</option>
+            <option>for a second-grader.</option>
+            <option>in a sarcastic manner.</option>
+            <option>as Shakespeare.</option>
+            <option>with lots of emojis.</option>
+          </Input>
         </FormGroup>
+
         <Button
           color="success"
           onClick={() => {
-            onClick();
-            summarize([data, radioValues]);
+            summarize([data, inputValues]);
             setIsLoading(true);
           }}
         >
-          Quickread The News
+          Summarize!
         </Button>
       </Form>
     </div>
