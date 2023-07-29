@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QuickreaderApi from "../api";
 import SummaryBox from "../components/SummaryBox";
-import { Spinner } from "reactstrap";
+import { Spinner, Card, CardTitle, CardText } from "reactstrap";
 import ChoicesForm from "../components/ChoicesForm";
 
 const Home = () => {
@@ -62,19 +62,28 @@ const Home = () => {
 
   return (
     <div className="container text-center">
-      <h3>Welcome to Quickreader</h3>
-      <h5>AI-Assisted Summaries for The New York Times</h5>
-      <i>
-        {section.toUpperCase() ?? "NYT"} content loaded and ready for summary...
-      </i>
-      <br></br>
-      <br></br>
-      <ChoicesForm
-        updateSection={updateSection}
-        summarize={summarize}
-        setIsLoading={setIsLoading}
-        data={data}
-      />
+      <Card
+        body
+        className="HomeCard text-center"
+        style={{
+          width: "50vw",
+          minWidth: "30rem",
+          backgroundColor: "mintcream",
+        }}
+      >
+        <CardTitle>
+          <h3>Welcome to paper-route.ai</h3>
+          <h5>AI-Assisted Summaries for the News</h5>
+        </CardTitle>
+        <CardText>
+          <ChoicesForm
+            updateSection={updateSection}
+            summarize={summarize}
+            setIsLoading={setIsLoading}
+            data={data}
+          />
+        </CardText>
+      </Card>
     </div>
   );
 };

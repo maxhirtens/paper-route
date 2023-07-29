@@ -1,7 +1,6 @@
 import React from "react";
 import RoutesList from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
-import NavBar from "./navbar/NavBar";
 import "./App.css";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar />
         <RoutesList />
       </div>
     </BrowserRouter>

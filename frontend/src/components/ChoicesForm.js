@@ -4,8 +4,8 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
   const [inputValues, setInputValues] = useState({
     section: "home",
-    language: "",
-    manner: "",
+    language: "in English",
+    manner: "for an adult.",
   });
 
   const onChange = (ev) => {
@@ -19,15 +19,10 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
   };
 
   return (
-    <div>
+    <div className="container text-center">
       <Form>
-        <p>
-          Dear New York Times AI Bot, please summarize the current top news in
-          the (section) section, (language). Oh and make sure to summarize it
-          (manner).
-        </p>
-        <FormGroup>
-          <Label for="section"></Label>
+        <FormGroup className="FormGroupMain">
+          <Label for="section">Section</Label>
           <Input
             type="select"
             name="section"
@@ -45,8 +40,8 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
           </Input>
         </FormGroup>
 
-        <FormGroup>
-          <Label for="language"></Label>
+        <FormGroup className="FormGroupMain">
+          <Label for="language">Language</Label>
           <Input
             type="select"
             name="language"
@@ -62,8 +57,8 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
           </Input>
         </FormGroup>
 
-        <FormGroup>
-          <Label for="manner"></Label>
+        <FormGroup className="FormGroupMain">
+          <Label for="manner">Manner</Label>
           <Input
             type="select"
             name="manner"
@@ -78,9 +73,19 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
             <option>with lots of emojis.</option>
           </Input>
         </FormGroup>
-
+        <p>
+          Dear Magic News Bot, please summarize the current top news in the{" "}
+          <i className="blinking">{inputValues.section}</i> section,{" "}
+          <i className="blinking">{inputValues.language}</i>. Oh, and make sure
+          to summarize it <i className="blinking">{inputValues.manner}</i>
+        </p>
         <Button
-          color="success"
+          style={{
+            color: "#00005c",
+            margin: "5%",
+            boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+          }}
+          outline
           onClick={() => {
             summarize([data, inputValues]);
             setIsLoading(true);
