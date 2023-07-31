@@ -22,9 +22,9 @@ router.post("/", async (req, res, next) => {
 
   const { prompt, time } = req.body[0];
 
-  const { section, language, manner } = req.body[1];
+  const { paper, section, manner } = req.body[1];
 
-  let content = `Summarize today's top New York Times ${section} content you are given ${language}${manner}`;
+  let content = `Summarize today's top ${paper} ${section} content you are given ${manner}`;
 
   console.log(content);
 

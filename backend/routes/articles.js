@@ -14,7 +14,7 @@ router.get("/:section", async (req, res, next) => {
   try {
     const section = req.params.section;
     let frontPage = await axios.get(`${BASE_URL}${section}${NYT_API_KEY}`);
-    // console.log(frontPage);
+    console.log(frontPage);
     // return the result
     return res.status(200).json({
       success: true,

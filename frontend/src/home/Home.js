@@ -3,6 +3,7 @@ import QuickreaderApi from "../api";
 import SummaryBox from "../components/SummaryBox";
 import { Spinner, Card, CardTitle, CardText } from "reactstrap";
 import ChoicesForm from "../components/ChoicesForm";
+import Footer from "../home/Footer";
 
 const Home = () => {
   const [articles, setArticles] = useState(null);
@@ -18,7 +19,6 @@ const Home = () => {
   async function searchArticles(section) {
     let articles = await QuickreaderApi.getArticles(section);
     setArticles(articles);
-    console.log(articles.message.results);
   }
 
   // summarize articles with ChatGPT.
@@ -30,7 +30,7 @@ const Home = () => {
 
   // get articles from API on mount.
   useEffect(() => {
-    console.log("useEffect on NYT Page");
+    console.log("getting articles from API");
     searchArticles(section);
   }, [section]);
 
@@ -83,6 +83,7 @@ const Home = () => {
             data={data}
           />
         </CardText>
+        <Footer />
       </Card>
     </div>
   );

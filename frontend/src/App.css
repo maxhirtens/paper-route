@@ -4,18 +4,19 @@ body {
   height: 100vh;
 }
 
-.App {
+.HomeCard, .SummaryBox {
   text-align: center;
   display: flex;
   width: 100%;
   max-width: 60%;
   margin: 0 auto;
+  margin-top: 30px;
   justify-content: center;
 }
 
 .blinking {
   animation: mymove 1s infinite alternate;
-  color: blueviolet;
+  color: rgb(104, 36, 168);
 }
 
 @keyframes mymove {
@@ -28,3 +29,14 @@ body {
   }
 }
 
+Button:hover {
+  background-color: rgb(71, 213, 161) !important;
+  color:aliceblue !important;
+}
+
+.footer {
+  width: 100%;
+  /* position: fixed; */
+  bottom: auto;
+  opacity: 50%;
+}
