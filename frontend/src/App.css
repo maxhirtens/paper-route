@@ -16,7 +16,7 @@ body {
 
 .blinking {
   animation: mymove 1s infinite alternate;
-  color: rgb(104, 36, 168);
+  color: #3e48bf;
 }
 
 @keyframes mymove {
