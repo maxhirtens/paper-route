@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import QuickreaderApi from "../api";
 import SummaryBox from "../components/SummaryBox";
-import { Spinner, Card, CardTitle, CardText } from "reactstrap";
+import { Card, CardTitle, CardText } from "reactstrap";
+import LoadingCard from "../components/LoadingCard";
 import ChoicesForm from "../components/ChoicesForm";
 import Footer from "../home/Footer";
 
@@ -42,7 +43,7 @@ const Home = () => {
   };
 
   // loading spinner.
-  if (!articles || isLoading) return <Spinner />;
+  if (!articles || isLoading) return <LoadingCard />;
 
   if (summary) {
     console.log("sending summary to summary box");

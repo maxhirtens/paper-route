@@ -9,19 +9,19 @@ class News {
    * Throws NotFoundError if not found.
    **/
 
-  static async get(id) {
+  static async get(date) {
     const newsRes = await db.query(
-      `SELECT sports
+      `SELECT *
            FROM news
-           WHERE id = $1`,
-      [id]
+           WHERE newsdate = $1`,
+      [date]
     );
 
     const data = newsRes.rows[0];
 
     if (!data) throw new NotFoundError(`No news: ${handle}`);
 
-    return data;
+    return { data: data };
   }
 }
 

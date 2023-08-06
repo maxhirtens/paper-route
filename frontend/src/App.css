@@ -4,7 +4,7 @@ body {
   height: 100vh;
 }
 
-.HomeCard, .SummaryBox {
+.HomeCard, .SummaryBox, .LoadingCard {
   text-align: center;
   display: flex;
   width: 100%;

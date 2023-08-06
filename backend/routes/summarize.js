@@ -24,7 +24,7 @@ router.post("/", async (req, res, next) => {
 
   const { paper, section, manner } = req.body[1];
 
-  let content = `Summarize today's top ${paper} ${section} content you are given ${manner}`;
+  let content = `Summarize today's top ${paper} ${section} content you are given ${manner} Please format nicely with paragraph breaks when applicable.`;
 
   console.log(content);
 
