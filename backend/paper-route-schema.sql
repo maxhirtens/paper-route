@@ -1,6 +1,5 @@
 CREATE TABLE news (
-  id SERIAL PRIMARY KEY,
-  newsdate DATE NOT NULL,
+  newsdate DATE PRIMARY KEY,
   source TEXT NOT NULL,
   homepage TEXT,
   arts TEXT,

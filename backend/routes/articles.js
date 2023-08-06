@@ -10,6 +10,17 @@ const NYT_API_KEY = ".json?api-key=" + process.env.NYT_API_KEY;
 const News = require("../models/news");
 const axios = require("axios");
 
+// POST route to send API data to local DB.
+router.patch("/", async function (req, res, next) {
+  console.log("writing to DB...");
+  try {
+    const data = await News.update(req.body);
+    return res.status(201).json({ data });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 // GET request to news source, retrieving cached or live articles.
 router.get("/:section", async (req, res, next) => {
   try {
