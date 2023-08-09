@@ -15,11 +15,9 @@ const SummaryBox = ({ summary, resetPage }) => {
     resetPage();
   };
 
-  const time = new Date(summary.time);
+  const time = new Date();
 
-  const localTime = time.toDateString();
-
-  console.log(time.toLocaleString());
+  const localTime = time.toLocaleString();
 
   return (
     <div className="SummaryBox container text-center">
@@ -40,7 +38,7 @@ const SummaryBox = ({ summary, resetPage }) => {
         </ListGroup>
 
         <CardFooter className="text-muted">
-          A summary of The (paper) (section) section by paper-route.ai on{" "}
+          A summary of The New York Times (section) section by paper-route.ai on{" "}
           {localTime}
         </CardFooter>
         <span>

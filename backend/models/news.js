@@ -19,14 +19,14 @@ class News {
 
     const data = newsRes.rows[0];
 
-    if (!data) throw new NotFoundError(`No news: ${handle}`);
+    if (!data) return null;
 
     return { data: data };
   }
 
   // Insert today's news API data to DB.
   static async update(data) {
-    console.log(data.date);
+    console.log("writing info to DB");
     const result = await db.query(
       `UPDATE news 
                       SET ${data.section} = '${data.content}'

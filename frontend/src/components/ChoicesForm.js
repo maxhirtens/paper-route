@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
+const ChoicesForm = ({ updateSection, summarize, setIsLoading, articles }) => {
   const defaults = {
     paper: "New York Times",
     section: "home",
@@ -66,12 +66,11 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
             value={inputValues.manner}
             onChange={onChange}
           >
-            <option defaultValue>for an adult.</option>
+            <option defaultValue>with lots of emojis.</option>
             <option>for a second-grader.</option>
             <option>in a sarcastic manner.</option>
             <option>as Shakespeare.</option>
-            <option>with lots of emojis.</option>
-            <option>as a song with a verse and chorus.</option>
+            <option>as a total bro who's had a few brews.</option>
           </Input>
         </FormGroup>
         <p>
@@ -104,7 +103,7 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, data }) => {
             }}
             outline
             onClick={() => {
-              summarize([data, inputValues]);
+              summarize([articles, inputValues]);
               setIsLoading(true);
             }}
           >

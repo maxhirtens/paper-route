@@ -50,16 +50,17 @@ const Home = () => {
     return <SummaryBox summary={summary} resetPage={resetPage} />;
   }
 
+  // MOVING THIS TO BACKEND.
   // parse out content from articles.
-  let selects = articles.message.results;
-  let top3 = selects.slice(3, 6);
-  let top3Data = top3.map((c) => c.title + ": " + c.abstract);
-  let top3joined = top3Data.join(". ");
-  let time = articles.message.last_updated;
-  let data = {
-    prompt: top3joined,
-    time: time,
-  };
+  // let selects = articles.message.results;
+  // let top3 = selects.slice(3, 6);
+  // let top3Data = top3.map((c) => c.title + ": " + c.abstract);
+  // let top3joined = top3Data.join(". ");
+  // let time = articles.message.last_updated;
+
+  // let data = {
+  //   prompt: articles,
+  // };
 
   return (
     <div className="container text-center">
@@ -81,7 +82,7 @@ const Home = () => {
             updateSection={updateSection}
             summarize={summarize}
             setIsLoading={setIsLoading}
-            data={data}
+            articles={articles}
           />
         </CardText>
         <Footer />

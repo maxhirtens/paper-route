@@ -28,7 +28,7 @@ class QuickreaderApi {
     return res.data;
   }
 
-  // get articles from NYT.
+  // send articles to ChatGPT.
   static async summarize(data) {
     let res = await this.request("summarize", "post", data);
     console.log(`attempting to summarize`);

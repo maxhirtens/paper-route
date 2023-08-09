@@ -15,7 +15,7 @@ const LoadingCard = () => {
         }}
       >
         <CardTitle tag="h5">
-          <i className="blinking">Summarizing the News!</i>
+          <i className="blinking">Loading!</i>
         </CardTitle>
         <CardText className="text-start text-center">
           <Spinner className="text-secondary" />

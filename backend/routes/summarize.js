@@ -20,17 +20,15 @@ const openai = new OpenAIApi(configuration);
 router.post("/", async (req, res, next) => {
   // getting prompt question from request
 
-  const { prompt, time } = req.body[0];
+  const { message } = req.body[0];
 
   const { paper, section, manner } = req.body[1];
 
-  let content = `Summarize today's top ${paper} ${section} content you are given ${manner} Please format nicely with paragraph breaks when applicable.`;
-
-  console.log(content);
+  let content = `Summarize today's top ${paper} ${section} content you are given ${manner}`;
 
   try {
-    if (prompt == null) {
-      throw new BadRequestError("No prompt was provided.");
+    if (message == null) {
+      throw new BadRequestError("No articles were provided.");
     }
 
     // get a response from chatgpt.
@@ -43,11 +41,11 @@ router.post("/", async (req, res, next) => {
         },
         {
           role: "user",
-          content: prompt,
+          content: message,
         },
       ],
       temperature: 0,
-      max_tokens: 1024,
+      max_tokens: 812,
     });
 
     // retrieve the answer text.
@@ -57,7 +55,6 @@ router.post("/", async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: completion,
-      time: time,
     });
   } catch (error) {
     return next(error);

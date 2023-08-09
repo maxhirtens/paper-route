@@ -11,15 +11,15 @@ const News = require("../models/news");
 const axios = require("axios");
 
 // POST route to send API data to local DB.
-router.patch("/", async function (req, res, next) {
-  console.log("writing to DB...");
-  try {
-    const data = await News.update(req.body);
-    return res.status(201).json({ data });
-  } catch (err) {
-    return next(err);
-  }
-});
+// router.patch("/", async function (req, res, next) {
+//   console.log("writing to DB...");
+//   try {
+//     const data = await News.update(req.body);
+//     return res.status(201).json({ data });
+//   } catch (err) {
+//     return next(err);
+//   }
+// });
 
 // GET request to news source, retrieving cached or live articles.
 router.get("/:section", async (req, res, next) => {
@@ -28,20 +28,34 @@ router.get("/:section", async (req, res, next) => {
     const date = new Date().toJSON();
     let articles;
 
-    // check if news data already stored in local DB.
+    // check if news section data is already stored in local DB.
     const dbRes = await News.get(date);
-
     const dbArticles = dbRes.data;
-
     const dbSectionData = dbArticles[section];
-    console.log(dbSectionData);
 
-    // query news API if it's not.
-    if (dbSectionData == null) {
+    // then extract it's data or start new API search.
+    if (dbSectionData !== null) {
+      console.log("obtained news from DB");
+      articles = dbSectionData;
+    } else {
+      // query news API.
+      console.log("querying API");
       articles = await axios.get(`${BASE_URL}${section}${NYT_API_KEY}`);
       articles = articles.data;
-    } else {
-      articles = dbSectionData;
+
+      // extract just text contents.
+      let selects = articles.results;
+      let top3 = selects.slice(0, 3);
+      let top3Data = top3.map((c) => c.title + ": " + c.abstract);
+      let top3joined = top3Data.join(" ");
+      articles = top3joined;
+
+      // send to local DB, do i need to await this?
+      News.update({
+        date: date,
+        section: section,
+        content: articles,
+      });
     }
 
     // return the result
