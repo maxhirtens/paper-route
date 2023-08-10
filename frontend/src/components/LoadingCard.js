@@ -1,5 +1,5 @@
 import React from "react";
-import { Spinner, Card, CardTitle, CardText } from "reactstrap";
+import { Spinner, Card, CardTitle } from "reactstrap";
 
 const LoadingCard = () => {
   return (
@@ -17,11 +17,9 @@ const LoadingCard = () => {
         <CardTitle tag="h5">
           <i className="blinking">Loading!</i>
         </CardTitle>
-        <CardText className="text-start text-center">
+        <div className="text-center">
           <Spinner className="text-secondary" />
-        </CardText>
-        {/* <CardFooter className="text-muted"></CardFooter> */}
-        {/* <Footer /> */}
+        </div>
       </Card>
     </div>
   );

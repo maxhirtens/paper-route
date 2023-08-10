@@ -1,7 +1,7 @@
 CREATE TABLE news (
   newsdate DATE PRIMARY KEY,
   source TEXT NOT NULL,
-  homepage TEXT,
+  home TEXT,
   arts TEXT,
   business TEXT,
   politics TEXT,

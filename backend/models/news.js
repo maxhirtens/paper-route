@@ -26,7 +26,7 @@ class News {
 
   // Insert today's news API data to DB.
   static async update(data) {
-    console.log("writing info to DB");
+    console.log("writing info to DB:" + data.section);
     const result = await db.query(
       `UPDATE news 
                       SET ${data.section} = '${data.content}'

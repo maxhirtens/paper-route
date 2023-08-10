@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QuickreaderApi from "../api";
 import SummaryBox from "../components/SummaryBox";
-import { Card, CardTitle, CardText } from "reactstrap";
+import { Card, CardTitle } from "reactstrap";
 import LoadingCard from "../components/LoadingCard";
 import ChoicesForm from "../components/ChoicesForm";
 import Footer from "../home/Footer";
@@ -77,14 +77,12 @@ const Home = () => {
           <h3>Welcome to paper-route.ai</h3>
           <h5>AI-Assisted Summaries for the News</h5>
         </CardTitle>
-        <CardText>
-          <ChoicesForm
-            updateSection={updateSection}
-            summarize={summarize}
-            setIsLoading={setIsLoading}
-            articles={articles}
-          />
-        </CardText>
+        <ChoicesForm
+          updateSection={updateSection}
+          summarize={summarize}
+          setIsLoading={setIsLoading}
+          articles={articles}
+        />
         <Footer />
       </Card>
     </div>

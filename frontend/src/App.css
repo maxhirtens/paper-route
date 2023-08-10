@@ -40,3 +40,12 @@ Button:hover {
   bottom: auto;
   opacity: 50%;
 }
+
+.typed {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: .17em;
+  margin: 0 auto;
+  overflow: visible;
+  white-space: normal;
+}
+

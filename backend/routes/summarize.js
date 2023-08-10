@@ -45,7 +45,7 @@ router.post("/", async (req, res, next) => {
         },
       ],
       temperature: 0,
-      max_tokens: 812,
+      max_tokens: 712,
     });
 
     // retrieve the answer text.

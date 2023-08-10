@@ -32,8 +32,8 @@ const SummaryBox = ({ summary, resetPage }) => {
       >
         <CardTitle tag="h5">Here's Your Summary!</CardTitle>
         <ListGroup>
-          <ListGroupItem>
-            <CardText className="text-start">{summary.message}</CardText>
+          <ListGroupItem className="typed-container">
+            <CardText className="typed">{summary.message}</CardText>
           </ListGroupItem>
         </ListGroup>
 
@@ -49,6 +49,7 @@ const SummaryBox = ({ summary, resetPage }) => {
               boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
             }}
             outline
+            disabled
           >
             Share It!
           </Button>

@@ -35,7 +35,7 @@ router.get("/:section", async (req, res, next) => {
 
     // then extract it's data or start new API search.
     if (dbSectionData !== null) {
-      console.log("obtained news from DB");
+      console.log("obtained news from DB:" + section);
       articles = dbSectionData;
     } else {
       // query news API.
@@ -51,7 +51,7 @@ router.get("/:section", async (req, res, next) => {
       articles = top3joined;
 
       // send to local DB, do i need to await this?
-      News.update({
+      await News.update({
         date: date,
         section: section,
         content: articles,

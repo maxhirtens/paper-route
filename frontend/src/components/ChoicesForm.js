@@ -5,7 +5,7 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, articles }) => {
   const defaults = {
     paper: "New York Times",
     section: "home",
-    manner: "for an adult.",
+    manner: "with lots of emojis.",
   };
 
   const [inputValues, setInputValues] = useState(defaults);
@@ -47,7 +47,9 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, articles }) => {
             value={inputValues.section}
             onChange={onChange}
           >
-            <option defaultValue>front page</option>
+            <option defaultValue value="home">
+              front page
+            </option>
             <option>arts</option>
             <option>business</option>
             <option>politics</option>
@@ -73,13 +75,13 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, articles }) => {
             <option>as a total bro who's had a few brews.</option>
           </Input>
         </FormGroup>
-        <p>
+        <div>
           Dear Magic News Bot, please summarize the current top
           <i className="blinking"> {inputValues.paper} </i>news in the
           <i className="blinking"> {inputValues.section}</i> section. Oh, and
           make sure to summarize it{" "}
           <i className="blinking"> {inputValues.manner}</i>
-        </p>
+        </div>
         <span>
           {" "}
           <Button
