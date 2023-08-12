@@ -10,7 +10,7 @@ const router = new express.Router();
 
 // configure OpenAI API with our key from .env
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: "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",
 });
 
 // new instance of OpenAPI API class.
@@ -18,13 +18,16 @@ const openai = new OpenAIApi(configuration);
 
 // POST request to ChatGPT.
 router.post("/", async (req, res, next) => {
-  // getting prompt question from request
-
+  // getting content from request body.
   const { message } = req.body[0];
+  console.log(message);
 
+  // get user choices too.
   const { paper, section, manner } = req.body[1];
 
   let content = `Summarize today's top ${paper} ${section} content you are given ${manner}`;
+
+  console.log(content);
 
   try {
     if (message == null) {

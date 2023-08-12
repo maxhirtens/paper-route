@@ -16,7 +16,9 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, articles }) => {
       ...data,
       [name]: value,
     }));
-    updateSection(inputValues.section);
+    // this might be the problem with my useEffect delay.
+    updateSection(value);
+    console.log("updating section on change to: " + value);
   };
 
   console.log(inputValues);

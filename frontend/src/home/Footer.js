@@ -7,6 +7,9 @@ function Footer() {
         Made with React.js by{" "}
         <a href="https://github.com/maxhirtens">@maxhirtens</a>
       </div>
+      <div className="footer text-center text-muted">
+        Data provided by The New York Times.
+      </div>
     </>
   );
 }

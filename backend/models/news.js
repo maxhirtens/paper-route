@@ -24,6 +24,20 @@ class News {
     return { data: data };
   }
 
+  // Create new date row for DB.
+  static async create(date) {
+    console.log("creating new row in DB for: " + date);
+    const result = await db.query(
+      `INSERT INTO news (newsdate, source)
+           VALUES ($1, $2)
+           RETURNING *`,
+      [date, "The New York Times"]
+    );
+    let res = result.rows[0];
+
+    return res;
+  }
+
   // Insert today's news API data to DB.
   static async update(data) {
     console.log("writing info to DB:" + data.section);

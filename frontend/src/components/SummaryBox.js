@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import Footer from "../home/Footer";
 
-const SummaryBox = ({ summary, resetPage }) => {
+const SummaryBox = ({ summary, section, resetPage }) => {
   const handleReset = () => {
     resetPage();
   };
@@ -38,7 +38,7 @@ const SummaryBox = ({ summary, resetPage }) => {
         </ListGroup>
 
         <CardFooter className="text-muted">
-          A summary of The New York Times (section) section by paper-route.ai on{" "}
+          A summary of The New York Times {section} section by paper-route.ai on{" "}
           {localTime}
         </CardFooter>
         <span>

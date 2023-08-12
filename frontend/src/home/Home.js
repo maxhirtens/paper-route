@@ -33,6 +33,7 @@ const Home = () => {
   useEffect(() => {
     console.log("getting articles from API");
     searchArticles(section);
+    setSection(section);
   }, [section]);
 
   // helper to reset page.
@@ -47,20 +48,10 @@ const Home = () => {
 
   if (summary) {
     console.log("sending summary to summary box");
-    return <SummaryBox summary={summary} resetPage={resetPage} />;
+    return (
+      <SummaryBox summary={summary} section={section} resetPage={resetPage} />
+    );
   }
-
-  // MOVING THIS TO BACKEND.
-  // parse out content from articles.
-  // let selects = articles.message.results;
-  // let top3 = selects.slice(3, 6);
-  // let top3Data = top3.map((c) => c.title + ": " + c.abstract);
-  // let top3joined = top3Data.join(". ");
-  // let time = articles.message.last_updated;
-
-  // let data = {
-  //   prompt: articles,
-  // };
 
   return (
     <div className="container text-center">

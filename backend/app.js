@@ -5,7 +5,6 @@ const morgan = require("morgan");
 const app = express();
 
 const { NotFoundError } = require("./expressError");
-const { authenticateJWT } = require("./middleware/auth");
 
 // const authRoutes = require("./routes/auth");
 const summarizeRoutes = require("./routes/summarize");
@@ -14,7 +13,6 @@ const articlesRoutes = require("./routes/articles");
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(authenticateJWT);
 
 // app.use("/auth", authRoutes);
 app.use("/summarize", summarizeRoutes);
