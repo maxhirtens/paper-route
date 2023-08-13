@@ -4,11 +4,7 @@ const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
 
 class News {
-  /** Given a date, return all that date's data if saved to DB.
-   *
-   * Throws NotFoundError if not found.
-   **/
-
+  // Select entire row of news excerpts by date.
   static async get(date) {
     const newsRes = await db.query(
       `SELECT *
@@ -34,11 +30,10 @@ class News {
       [date, "The New York Times"]
     );
     let res = result.rows[0];
-
     return res;
   }
 
-  // Insert today's news API data to DB.
+  // Insert today's news excerpts data to DB.
   static async update(data) {
     console.log("writing info to DB:" + data.section);
     const result = await db.query(

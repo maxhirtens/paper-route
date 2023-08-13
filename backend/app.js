@@ -4,17 +4,14 @@ const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
 
-const { NotFoundError } = require("./expressError");
-
-// const authRoutes = require("./routes/auth");
-const summarizeRoutes = require("./routes/summarize");
-const articlesRoutes = require("./routes/articles");
-
+require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
 
-// app.use("/auth", authRoutes);
+const summarizeRoutes = require("./routes/summarize");
+const articlesRoutes = require("./routes/articles");
+
 app.use("/summarize", summarizeRoutes);
 app.use("/articles", articlesRoutes);
 

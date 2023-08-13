@@ -24,14 +24,12 @@ class QuickreaderApi {
   // get articles from NYT.
   static async getArticles(section) {
     let res = await this.request(`articles/${section}`);
-    console.log(`attempting to retrieve articles for: ` + section);
     return res.data;
   }
 
   // send articles to ChatGPT.
   static async summarize(data) {
     let res = await this.request("summarize", "post", data);
-    console.log(`attempting to summarize`);
     return res.data;
   }
 }

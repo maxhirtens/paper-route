@@ -31,14 +31,12 @@ const Home = () => {
 
   // get articles from API on mount.
   useEffect(() => {
-    console.log("getting articles from API");
     searchArticles(section);
     setSection(section);
   }, [section]);
 
   // helper to reset page.
   const resetPage = () => {
-    console.log("cleaning up page");
     setSummary(null);
     setSection("home");
   };
@@ -47,7 +45,6 @@ const Home = () => {
   if (!articles || isLoading) return <LoadingCard />;
 
   if (summary) {
-    console.log("sending summary to summary box");
     return (
       <SummaryBox summary={summary} section={section} resetPage={resetPage} />
     );

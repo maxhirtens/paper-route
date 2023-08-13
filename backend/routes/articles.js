@@ -3,12 +3,11 @@
 /** Get articles route. */
 
 const express = require("express");
-const { BadRequestError } = require("../expressError");
 const router = new express.Router();
-const BASE_URL = "https://api.nytimes.com/svc/topstories/v2/";
 const News = require("../models/news");
-const axios = require("axios");
 const { extract } = require("../helpers/extract");
+const BASE_URL = "https://api.nytimes.com/svc/topstories/v2/";
+const axios = require("axios");
 
 // GET request to news source, retrieving cached or live articles.
 router.get("/:section", async (req, res, next) => {
@@ -30,13 +29,10 @@ router.get("/:section", async (req, res, next) => {
       // query news API.
       console.log("querying API");
       articles = await axios.get(
-        `${BASE_URL}${section}.json?api-key=${process.env.NYT_API_KEY}`
+        `${BASE_URL}${section}.json?api-key=${process.env.REACT_APP_NYT_API_KEY}`
       );
-      articles = articles.data;
-      let selects = articles.results;
-
-      // extract just text contents.
-      articles = extract(selects);
+      // get excerpts only from API.
+      articles = extract(articles);
 
       // send to local DB
       await News.update({

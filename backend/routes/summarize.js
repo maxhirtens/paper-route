@@ -10,7 +10,7 @@ const router = new express.Router();
 
 // configure OpenAI API with our key from .env
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 
 // new instance of OpenAPI API class.
