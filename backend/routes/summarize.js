@@ -20,7 +20,6 @@ const openai = new OpenAIApi(configuration);
 router.post("/", async (req, res, next) => {
   // getting content from request body.
   const { message } = req.body[0];
-  console.log(message);
 
   // get user choices too.
   const { paper, section, manner } = req.body[1];

@@ -42,7 +42,7 @@ const SummaryBox = ({ summary, section, resetPage }) => {
           {localTime}
         </CardFooter>
         <span>
-          <Button
+          {/* <Button
             style={{
               color: "#00005c",
               margin: "5%",
@@ -52,7 +52,7 @@ const SummaryBox = ({ summary, section, resetPage }) => {
             disabled
           >
             Share It!
-          </Button>
+          </Button> */}
           <Button
             style={{
               color: "#00005c",
@@ -62,7 +62,7 @@ const SummaryBox = ({ summary, section, resetPage }) => {
             outline
             onClick={handleReset}
           >
-            Try Again
+            I Want to Try Again
           </Button>
         </span>
         <Footer />

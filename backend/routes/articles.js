@@ -18,6 +18,7 @@ router.get("/:section", async (req, res, next) => {
 
     // check if news section data is already stored in local DB.
     const dbRes = (await News.get(date)) || (await News.create(date));
+    console.log(dbRes);
     const dbArticles = dbRes.data;
     const dbSectionData = dbArticles[section];
 

@@ -1,7 +1,6 @@
 "use strict";
 
 const db = require("../db");
-const { BadRequestError, NotFoundError } = require("../expressError");
 
 class News {
   // Select entire row of news excerpts by date.
@@ -29,8 +28,12 @@ class News {
            RETURNING *`,
       [date, "The New York Times"]
     );
-    let res = result.rows[0];
-    return res;
+
+    const data = result.rows[0];
+
+    if (!data) return null;
+
+    return { data: data };
   }
 
   // Insert today's news excerpts data to DB.
