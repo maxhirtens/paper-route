@@ -62,9 +62,9 @@ const Home = () => {
         }}
       >
         <CardTitle>
-          <div class="title">
-            <h3 className="title-text">paper-route.ai</h3>
-            <i>AI-Assisted Summaries for the News</i>
+          <div className="title">
+            <h3 className="title-text">paper-route</h3>
+            <i>AI-Assisted Summaries for your Favorite Newspapers</i>
           </div>
         </CardTitle>
         <ChoicesForm

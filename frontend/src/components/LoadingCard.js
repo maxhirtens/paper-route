@@ -19,8 +19,8 @@ const LoadingCard = () => {
         </CardTitle>
         <div>
           <svg>
-            <circle class="bg-loading" cx="57" cy="57" r="52" />
-            <circle class="meter-3" cx="57" cy="57" r="52" />
+            <circle className="bg-loading" cx="57" cy="57" r="52" />
+            <circle className="meter-3" cx="57" cy="57" r="52" />
           </svg>
         </div>
       </Card>
