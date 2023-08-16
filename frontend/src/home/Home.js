@@ -62,8 +62,10 @@ const Home = () => {
         }}
       >
         <CardTitle>
-          <h3>Welcome to paper-route.ai</h3>
-          <h5>AI-Assisted Summaries for the News</h5>
+          <div class="title">
+            <h3 className="title-text">paper-route.ai</h3>
+            <i>AI-Assisted Summaries for the News</i>
+          </div>
         </CardTitle>
         <ChoicesForm
           updateSection={updateSection}

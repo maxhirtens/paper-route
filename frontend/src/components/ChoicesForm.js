@@ -71,7 +71,7 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, articles }) => {
           >
             <option defaultValue>with lots of emojis.</option>
             <option>for a second-grader.</option>
-            <option>in a sarcastic manner.</option>
+            <option>super sarcastically.</option>
             <option>as Shakespeare.</option>
             <option>as a total bro who's had a few brews.</option>
           </Input>
