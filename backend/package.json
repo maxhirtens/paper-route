@@ -24,5 +24,8 @@
     "morgan": "^1.10.0",
     "openai": "^3.3.0",
     "pg": "^8.11.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
   }
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-// Helper functions to clean up my routes.
+// Helper function to clean up articles routes.
 
 function extract(articles) {
   articles = articles.data;
