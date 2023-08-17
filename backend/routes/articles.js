@@ -32,6 +32,7 @@ router.get("/:section", async (req, res, next) => {
       articles = await axios.get(
         `${BASE_URL}${section}.json?api-key=${process.env.REACT_APP_NYT_API_KEY}`
       );
+
       // get excerpts only from API.
       articles = extract(articles);
 

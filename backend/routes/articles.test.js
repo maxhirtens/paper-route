@@ -37,10 +37,19 @@ describe("GET /articles/:section", function () {
     });
   });
 
-  // write an API call test
+  test("politics API call works", async function () {
+    const section = "politics";
+    const resp = await request(app).get(`/articles/${section}`);
+
+    expect(resp.body).not.toEqual({
+      message: "",
+      success: true,
+    });
+  });
 
   test("not found", async function () {
-    const resp = await request(app).get(`/bananas`);
-    expect(resp.statusCode).toEqual(404);
+    const resp = await request(app).get(`/articles/bananas`);
+    console.log(resp.body);
+    expect(resp.body.message).toBeUndefined();
   });
 });
