@@ -1,7 +1,8 @@
 body {
   background: linear-gradient(#e66465, #9198e5);
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: -webkit-fill-available;
 }
 
 .HomeCard, .SummaryBox, .LoadingCard {
