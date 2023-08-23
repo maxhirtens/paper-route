@@ -2,7 +2,7 @@ body {
   background: linear-gradient(#e66465, #9198e5);
   background-repeat: no-repeat;
   min-height: 100vh;
-  max-height: -webkit-fill-available;
+  --webkit-background-size: cover;
 }
 
 .HomeCard, .SummaryBox, .LoadingCard {
@@ -12,6 +12,7 @@ body {
   max-width: 60%;
   margin: 0 auto;
   margin-top: 30px;
+  margin-bottom: 30px;
   justify-content: center;
 }
 
