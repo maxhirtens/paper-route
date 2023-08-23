@@ -57,7 +57,7 @@ const Home = () => {
         className="HomeCard text-center"
         style={{
           width: "50vw",
-          minWidth: "30rem",
+          minWidth: "20rem",
           backgroundColor: "mintcream",
         }}
       >

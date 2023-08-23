@@ -9,7 +9,7 @@ const LoadingCard = () => {
         className="LoadingCard text-center"
         style={{
           width: "50vw",
-          minWidth: "30rem",
+          minWidth: "20rem",
           height: "49vh",
           backgroundColor: "mintcream",
         }}
