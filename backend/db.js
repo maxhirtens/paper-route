@@ -14,6 +14,7 @@ if (process.env.NODE_ENV === "production") {
   });
 } else {
   db = new Client({
+    // change to "postgresql:///paper_route" for local testing.
     connectionString: getDatabaseUri(),
   });
 }

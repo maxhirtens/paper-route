@@ -69,8 +69,8 @@ const ChoicesForm = ({ updateSection, summarize, setIsLoading, articles }) => {
             value={inputValues.manner}
             onChange={onChange}
           >
-            <option defaultValue>with lots of emojis.</option>
-            <option>for a second-grader.</option>
+            <option defaultValue>with emojis!</option>
+            <option>as an announcer at a monster-truck rally.</option>
             <option>super sarcastically.</option>
             <option>as Shakespeare.</option>
             <option>as a total bro who's had a few brews.</option>

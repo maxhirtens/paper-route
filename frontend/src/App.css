@@ -44,8 +44,7 @@ Button:hover {
 }
 
 .typed {
-  font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: .17em;
+  font-family: 'Montserrat', sans-serif;
   margin: 0 auto;
   overflow: visible;
   white-space: normal;
