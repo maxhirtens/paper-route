@@ -35,7 +35,7 @@ router.post("/", async (req, res, next) => {
 
     // get a response from chatgpt.
     const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o",
       messages: [
         {
           role: "system",
@@ -47,7 +47,7 @@ router.post("/", async (req, res, next) => {
         },
       ],
       temperature: 0,
-      max_tokens: 712,
+      max_tokens: 1024,
     });
 
     // retrieve the answer text.
