@@ -5,16 +5,15 @@
 
 const express = require("express");
 const { BadRequestError } = require("../expressError");
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require("openai");
 const router = new express.Router();
 
-// configure OpenAI API with our key from .env
-const configuration = new Configuration({
+// Configure OpenAI API client with our key from .env
+const openai = new OpenAI({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+  organization: "org-vPMmpx6xAy0jhvyB1i2CZZ6f",
+  project: "proj_BlgMljdrYCzpgwSjY1Hbi3QR",
 });
-
-// new instance of OpenAPI API class.
-const openai = new OpenAIApi(configuration);
 
 // POST request to ChatGPT.
 router.post("/", async (req, res, next) => {
@@ -26,19 +25,17 @@ router.post("/", async (req, res, next) => {
 
   let content = `Summarize today's top ${paper} ${section} content you are given ${manner}`;
 
-  console.log(content);
-
   try {
     if (message == null) {
       throw new BadRequestError("No articles were provided.");
     }
 
     // get a response from chatgpt.
-    const response = await openai.createChatCompletion({
-      model: "gpt-4o",
+    const response = await openai.chat.completions.create({
+      model: "o1-mini",
       messages: [
         {
-          role: "system",
+          role: "assistant",
           content: content,
         },
         {
@@ -46,12 +43,11 @@ router.post("/", async (req, res, next) => {
           content: message,
         },
       ],
-      temperature: 0,
-      max_tokens: 1024,
+      max_completion_tokens: 1024,
     });
 
     // retrieve the answer text.
-    const completion = response.data.choices[0].message.content;
+    const completion = response.choices[0].message.content;
 
     // return the result
     return res.status(200).json({
@@ -59,7 +55,18 @@ router.post("/", async (req, res, next) => {
       message: completion,
     });
   } catch (error) {
-    return next(error);
+    // Enhanced error handling
+    console.error("OpenAI API Error:", error);
+
+    if (error.response) {
+      // OpenAI API error
+      return next(
+        new Error(`OpenAI API error: ${error.response.data.error.message}`)
+      );
+    } else {
+      // Network or other error
+      return next(error);
+    }
   }
 });
 

@@ -33,7 +33,11 @@ const SummaryBox = ({ summary, section, resetPage }) => {
         <CardTitle tag="h5">Here's Your Summary!</CardTitle>
         <ListGroup>
           <ListGroupItem className="typed-container">
-            <CardText className="typed">{summary.message}</CardText>
+            <CardText className="typed">
+              {summary.message
+                ? summary.message
+                : "No summary available. Try again!"}
+            </CardText>
           </ListGroupItem>
         </ListGroup>
 

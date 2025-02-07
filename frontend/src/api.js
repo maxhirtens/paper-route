@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const BASE_URL =
-  "https://paper-route-app.onrender.com" || "http://localhost:4000";
+// "https://paper-route-app.onrender.com" || "http://localhost:4000";
+
+const BASE_URL = "http://localhost:4000";
 
 /** API Class.
  * Static class tying together methods used to get/send to to the API.

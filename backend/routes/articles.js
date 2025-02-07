@@ -36,6 +36,8 @@ router.get("/:section", async (req, res, next) => {
       // get excerpts only from API.
       articles = extract(articles);
 
+      // console.log("extracted articles", articles);
+
       // send to local DB
       await News.update({
         date: date,
