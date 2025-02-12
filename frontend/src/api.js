@@ -1,8 +1,9 @@
 import axios from "axios";
 
-// "https://paper-route-app.onrender.com"
-
-const BASE_URL = "http://localhost:4000";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://paper-route-app.onrender.com"
+    : "http://localhost:4000";
 
 /** API Class.
  * Static class tying together methods used to get/send to to the API.
