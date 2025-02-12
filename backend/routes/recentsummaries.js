@@ -1,5 +1,5 @@
 import express from "express";
-import Summaries from "../models/Summaries.js";
+import Summaries from "../models/summaries.js";
 
 const router = express.Router();
 
