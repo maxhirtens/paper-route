@@ -1,24 +1,30 @@
-// Express app for Quickereader.
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import "dotenv/config";
+import summarizeRoutes from "./routes/summarize.js";
+import articlesRoutes from "./routes/articles.js";
+import recentSummariesRoutes from "./routes/recentsummaries.js";
+
 const app = express();
 
-require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
 
-const summarizeRoutes = require("./routes/summarize");
-const articlesRoutes = require("./routes/articles");
+class NotFoundError extends Error {
+  constructor(message = "Not Found") {
+    super(message);
+    this.status = 404;
+  }
+}
 
 app.use("/summarize", summarizeRoutes);
 app.use("/articles", articlesRoutes);
-
-/** Handle 404 errors -- this matches everything */
-// app.use(function (req, res, next) {
-//   return next(new NotFoundError());
-// });
+app.use("/recentsummaries", recentSummariesRoutes);
+app.use(function (req, res, next) {
+  return next(new NotFoundError());
+});
 
 /** Generic error handler; anything unhandled goes here. */
 app.use(function (err, req, res, next) {
@@ -32,4 +38,4 @@ app.use(function (err, req, res, next) {
   });
 });
 
-module.exports = app;
+export default app;

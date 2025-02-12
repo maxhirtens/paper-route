@@ -1,7 +1,7 @@
-const request = require("supertest");
+import request from "supertest";
 
-const app = require("./app");
-const db = require("./db");
+import app from "./app";
+import { end } from "./db";
 
 test("not found for site 404", async function () {
   const resp = await request(app).get("/no-such-path");
@@ -16,5 +16,5 @@ test("not found for site 404 (test stack print)", async function () {
 });
 
 afterAll(function () {
-  db.end();
+  end();
 });

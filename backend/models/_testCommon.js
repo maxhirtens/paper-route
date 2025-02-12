@@ -1,22 +1,22 @@
-const db = require("../db.js");
-const News = require("./news.js");
+import { query, end } from "../db.js";
+import { create, update } from "./news.js";
 
 async function commonBeforeAll() {
-  await db.query("DELETE FROM news");
-  await News.create("08-14-23");
-  await News.create("08-15-23");
-  await News.create("08-16-23");
-  await News.update({
+  await query("DELETE FROM news");
+  await create("08-14-23");
+  await create("08-15-23");
+  await create("08-16-23");
+  await update({
     date: "08-14-23",
     section: "arts",
     content: "arts db content",
   });
-  await News.update({
+  await update({
     date: "08-15-23",
     section: "business",
     content: "business db content",
   });
-  await News.update({
+  await update({
     date: "08-16-23",
     section: "politics",
     content: "politics db content",
@@ -24,18 +24,18 @@ async function commonBeforeAll() {
 }
 
 async function commonBeforeEach() {
-  await db.query("BEGIN");
+  await query("BEGIN");
 }
 
 async function commonAfterEach() {
-  await db.query("ROLLBACK");
+  await query("ROLLBACK");
 }
 
 async function commonAfterAll() {
-  await db.end();
+  await end();
 }
 
-module.exports = {
+export default {
   commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,

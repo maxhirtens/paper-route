@@ -1,8 +1,5 @@
-"use strict";
-
 // Helper function to clean up articles routes.
-
-function extract(articles) {
+export default function extract(articles) {
   try {
     articles = articles.data;
     let selects = articles.results;
@@ -14,7 +11,3 @@ function extract(articles) {
     return next(err);
   }
 }
-
-module.exports = {
-  extract,
-};

@@ -1,15 +1,13 @@
-"use strict";
+import request from "supertest";
 
-const request = require("supertest");
+import app from "../app";
 
-const app = require("../app");
-
-const {
+import {
   commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-} = require("./_testCommon");
+} from "./_testCommon";
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);

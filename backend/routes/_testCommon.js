@@ -1,18 +1,17 @@
-"use strict";
+import { query, end } from "../db.js";
+import { create, update } from "../models/news";
 
-const db = require("../db.js");
-const News = require("../models/news");
 const date = new Date().toJSON();
 
 async function commonBeforeAll() {
-  await db.query("DELETE FROM news");
-  await News.create(date);
-  await News.update({
+  await query("DELETE FROM news");
+  await create(date);
+  await update({
     date: date,
     section: "world",
     content: "world test content",
   });
-  await News.update({
+  await update({
     date: date,
     section: "sports",
     content: "",
@@ -20,18 +19,18 @@ async function commonBeforeAll() {
 }
 
 async function commonBeforeEach() {
-  await db.query("BEGIN");
+  await query("BEGIN");
 }
 
 async function commonAfterEach() {
-  await db.query("ROLLBACK");
+  await query("ROLLBACK");
 }
 
 async function commonAfterAll() {
-  await db.end();
+  await end();
 }
 
-module.exports = {
+export default {
   commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,

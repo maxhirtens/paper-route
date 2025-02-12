@@ -1,13 +1,10 @@
-"use strict";
+import express from "express";
+import News from "../models/news.js";
+import axios from "axios";
+import extract from "../helpers/extract.js";
 
-/** Get articles route. */
-
-const express = require("express");
-const router = new express.Router();
-const News = require("../models/news");
-const { extract } = require("../helpers/extract");
+const router = express.Router();
 const BASE_URL = "https://api.nytimes.com/svc/topstories/v2/";
-const axios = require("axios");
 
 // GET request to news source, retrieving cached or live articles.
 router.get("/:section", async (req, res, next) => {
@@ -18,7 +15,6 @@ router.get("/:section", async (req, res, next) => {
 
     // check if news section data is already stored in local DB.
     const dbRes = (await News.get(date)) || (await News.create(date));
-    // console.log(dbRes);
     const dbArticles = dbRes.data;
     const dbSectionData = dbArticles[section];
 
@@ -30,7 +26,7 @@ router.get("/:section", async (req, res, next) => {
       // query news API.
       console.log("querying API");
       articles = await axios.get(
-        `${BASE_URL}${section}.json?api-key=${process.env.REACT_APP_NYT_API_KEY}`
+        `${BASE_URL}${section}.json?api-key=${process.env.NYT_API_KEY}`
       );
 
       // get excerpts only from API.
@@ -56,4 +52,4 @@ router.get("/:section", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,18 +1,17 @@
-"use strict";
-
 /** ChatGPT route. */
 // some inspiration from https://blog.bitsrc.io/interacting-with-openai-in-node-js-and-express-647e771fc4ad
+import { Router } from "express";
+import OpenAI from "openai";
+import { BadRequestError } from "../expressError.js";
+import Summaries from "../models/Summaries.js";
 
-const express = require("express");
-const { BadRequestError } = require("../expressError");
-const OpenAI = require("openai");
-const router = new express.Router();
+const router = new Router();
 
 // Configure OpenAI API client with our key from .env
 const openai = new OpenAI({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-  organization: "org-vPMmpx6xAy0jhvyB1i2CZZ6f",
-  project: "proj_BlgMljdrYCzpgwSjY1Hbi3QR",
+  apiKey: process.env.OPENAI_API_KEY,
+  organization: process.env.OPENAI_ORG_ID,
+  project: process.env.OPENAI_PROJECT_ID,
 });
 
 // POST request to ChatGPT.
@@ -49,6 +48,20 @@ router.post("/", async (req, res, next) => {
     // retrieve the answer text.
     const completion = response.choices[0].message.content;
 
+    // Save the summary to the database
+    if (!completion) {
+      throw new BadRequestError("No summary was generated. Try again.");
+    }
+
+    await Summaries.create({
+      newsdate: new Date(),
+      source: paper,
+      section,
+      manner,
+      message,
+      summary: completion,
+    });
+
     // return the result
     return res.status(200).json({
       success: true,
@@ -56,7 +69,7 @@ router.post("/", async (req, res, next) => {
     });
   } catch (error) {
     // Enhanced error handling
-    console.error("OpenAI API Error:", error);
+    console.error("Error:", error);
 
     if (error.response) {
       // OpenAI API error
@@ -70,4 +83,4 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;

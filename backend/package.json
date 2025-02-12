@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js",
     "test": "jest -i",
@@ -23,9 +24,16 @@
     "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "openai": "^4.83.0",
-    "pg": "^8.11.1"
+    "pg": "^8.13.2",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
     "supertest": "^6.3.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "type": "module"
   }
 }

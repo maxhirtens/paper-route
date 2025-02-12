@@ -1,4 +1,4 @@
-const { extract } = require("./extract");
+import { extract } from "./extract";
 
 describe("extract function", function () {
   test("works: 1 item", function () {

@@ -1,13 +1,11 @@
-"use strict";
-
-const db = require("../db.js");
-const News = require("./news.js");
-const {
+import { pool } from "../db.js";
+import News from "./news.js";
+import {
   commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-} = require("./_testCommon");
+} from "./_testCommon.js";
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);

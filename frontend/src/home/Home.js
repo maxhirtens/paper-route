@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import QuickreaderApi from "../api";
 import SummaryBox from "../components/SummaryBox";
@@ -5,6 +6,7 @@ import { Card, CardTitle } from "reactstrap";
 import LoadingCard from "../components/LoadingCard";
 import ChoicesForm from "../components/ChoicesForm";
 import Footer from "../home/Footer";
+import RecentEntries from "../components/RecentEntries";
 
 const Home = () => {
   const [articles, setArticles] = useState(null);
@@ -44,12 +46,6 @@ const Home = () => {
   // loading spinner.
   if (!articles || isLoading) return <LoadingCard />;
 
-  if (summary) {
-    return (
-      <SummaryBox summary={summary} section={section} resetPage={resetPage} />
-    );
-  }
-
   return (
     <div className="container text-center">
       <Card
@@ -67,12 +63,28 @@ const Home = () => {
             <i>AI-Assisted Summaries for your Favorite Newspapers</i>
           </div>
         </CardTitle>
-        <ChoicesForm
-          updateSection={updateSection}
-          summarize={summarize}
-          setIsLoading={setIsLoading}
-          articles={articles}
-        />
+        {!articles || isLoading ? (
+          <LoadingCard />
+        ) : (
+          <>
+            {summary ? (
+              <SummaryBox
+                summary={summary}
+                section={section}
+                resetPage={resetPage}
+              />
+            ) : (
+              <ChoicesForm
+                updateSection={updateSection}
+                summarize={summarize}
+                setIsLoading={setIsLoading}
+                articles={articles}
+              />
+            )}
+          </>
+        )}
+
+        <RecentEntries />
         <Footer />
       </Card>
     </div>

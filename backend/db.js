@@ -1,24 +1,15 @@
-"use strict";
-/** Database setup for jobly. */
-const { Client } = require("pg");
-const { getDatabaseUri } = require("./config");
+import pkg from "pg";
+import { readFileSync } from "fs";
 
-let db;
+const { Pool } = pkg;
 
-if (process.env.NODE_ENV === "production") {
-  db = new Client({
-    connectionString: getDatabaseUri(),
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  });
-} else {
-  db = new Client({
-    // change to "postgresql:///paper_route" for local testing.
-    connectionString: getDatabaseUri(),
-  });
-}
+const connectionString = process.env.DATABASE_URL;
 
-db.connect();
+const pool = new Pool({
+  connectionString: connectionString,
+  ssl: {
+    ca: readFileSync("ca.crt").toString(),
+  },
+});
 
-module.exports = db;
+export { pool };

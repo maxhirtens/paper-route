@@ -1,5 +1,5 @@
 INSERT INTO news (newsdate, source, home, arts, business, politics, technology, sports, world)
-VALUES ('2023-08-10',
+VALUES ('2025-02-11',
         'The New York Times',
         NULL,
         NULL,
