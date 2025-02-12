@@ -3,7 +3,7 @@
 import { Router } from "express";
 import OpenAI from "openai";
 import { BadRequestError } from "../expressError.js";
-import Summaries from "../models/Summaries.js";
+import Summaries from "../models/summaries.js";
 
 const router = new Router();
 
