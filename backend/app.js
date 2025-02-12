@@ -22,6 +22,8 @@ class NotFoundError extends Error {
 app.use("/summarize", summarizeRoutes);
 app.use("/articles", articlesRoutes);
 app.use("/recentsummaries", recentSummariesRoutes);
+
+/** 404 handler */
 app.use(function (req, res, next) {
   return next(new NotFoundError());
 });

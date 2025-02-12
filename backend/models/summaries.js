@@ -23,7 +23,7 @@ class Summaries {
 
   // Get all summary entries.
   static async getAll() {
-    console.log("fetching the most recent 5 summaries from DB");
+    console.log("fetching the 5 most recent summaries from DB");
     const result = await pool.query(
       `SELECT * FROM summaries ORDER BY created_at DESC LIMIT 5`
     );
