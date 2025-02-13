@@ -12,8 +12,6 @@ class Summaries {
       [id, newsdate, source, section, manner, message, summary]
     );
 
-    console.log("inserted summary to db", result);
-
     const datares = result.rows[0];
 
     if (!datares) return null;

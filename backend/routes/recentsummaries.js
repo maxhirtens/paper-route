@@ -7,7 +7,7 @@ router.get("/", async (req, res, next) => {
   console.log("getting all recent summaries");
   try {
     const recentSummaries = await Summaries.getAll();
-    return res.json({ data: recentSummaries });
+    return res.json(recentSummaries);
   } catch (err) {
     return next(err);
   }

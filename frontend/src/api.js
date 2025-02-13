@@ -12,13 +12,25 @@ const BASE_URL =
 class QuickreaderApi {
   static async request(endpoint, method = "get", data) {
     const url = `${BASE_URL}/${endpoint}`;
-
     try {
-      return await axios({ url, method, data });
+      const response = await axios({ url, method, data });
+      return response;
     } catch (err) {
-      console.error("API Error:", err.response);
-      let message = err.response.data;
-      throw Array.isArray(message) ? message : [message];
+      // More specific error handling
+      if (err.response) {
+        // Server responded with error
+        const message = err.response.data.error?.message || "An error occurred";
+        const status = err.response.status;
+        throw new Error(`API Error (${status}): ${message}`);
+      } else if (err.request) {
+        // Request made but no response
+        throw new Error(
+          "No response from server. Please check your connection."
+        );
+      } else {
+        // Request setup error
+        throw new Error(`Request failed: ${err.message}`);
+      }
     }
   }
 
