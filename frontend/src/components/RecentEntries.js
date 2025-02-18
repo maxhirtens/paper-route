@@ -30,18 +30,22 @@ const RecentEntries = () => {
       ) : (
         <>
           <h2>Recently Created Summaries</h2>
-          {recentSummaries.data.map((entry, index) => (
-            <Card key={index} className="mb-3">
-              <CardBody>
-                <p>
-                  The {toTitleCase(entry.source)} {toTitleCase(entry.section)}{" "}
-                  section, {toTitleCase(entry.manner).toLowerCase()}
-                </p>
-                <p>{new Date(entry.newsdate).toDateString()}</p>
-                <p>{entry.summary}</p>
-              </CardBody>
-            </Card>
-          ))}
+          {recentSummaries.data && recentSummaries.data.length > 0 ? (
+            recentSummaries.data.map((entry, index) => (
+              <Card key={index} className="mb-3">
+                <CardBody>
+                  <p>
+                    The {toTitleCase(entry.source)} {toTitleCase(entry.section)}{" "}
+                    section, {toTitleCase(entry.manner).toLowerCase()}
+                  </p>
+                  <p>{new Date(entry.newsdate).toDateString()}</p>
+                  <p>{entry.summary}</p>
+                </CardBody>
+              </Card>
+            ))
+          ) : (
+            <div>No recent summaries available.</div>
+          )}
         </>
       )}
     </div>
