@@ -26,6 +26,8 @@ class Summaries {
       `SELECT * FROM summaries ORDER BY created_at DESC LIMIT 5`
     );
 
+    console.log("data from DB:", result);
+
     const data = result.rows;
 
     if (!data || data.length === 0) return null;
